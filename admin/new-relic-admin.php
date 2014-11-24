@@ -31,7 +31,7 @@
     		    <tr>
     			<th scope="row"><label for="blogname">Email:</label></th>
     			<td>
-    			    <input type="email" name="relic-account-email" id="relic-account-email" class="regular-text">
+    			    <input type="text" name="relic-account-email" id="relic-account-email" class="regular-text" >
     			    <span id="relic-account-email_error" class="form_error"></span>
     			</td>
     		    </tr>

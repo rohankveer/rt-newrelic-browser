@@ -37,6 +37,22 @@ jQuery( document ).ready( function( ) {
 					valid = false;
 					jQuery( formid + ' #' + element.name + "_error" ).text( 'Cannot be blank' );
 					jQuery( formid + ' #' + element.name + "_error" ).css( 'display', 'block' );
+				} else if ( element.name == 'relic-first-name' || element.name == 'relic-last-name' ) {
+					if ( !element.value.match( /^[A-Za-z]+$/ ) ) {
+						jQuery( formid + ' #' + element.name + "_error" ).text( 'Should contain characters only.' );
+						jQuery( formid + ' #' + element.name + "_error" ).css( 'display', 'block' );
+					} else {
+						jQuery( formid + ' #' + element.name + "_error" ).css( 'display', 'none' );
+					}
+				} else if ( element.name == 'relic-account-email' ) {
+					var email_valid_regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+					if ( !email_valid_regex.test(element.value) ) {
+						jQuery( formid + ' #' + element.name + "_error" ).text( 'Not a valid email address.' );
+						jQuery( formid + ' #' + element.name + "_error" ).css( 'display', 'block' );
+					} else {
+						jQuery( formid + ' #' + element.name + "_error" ).css( 'display', 'none' );
+					}
+
 				} else {
 					jQuery( formid + ' #' + element.name + "_error" ).css( 'display', 'none' );
 				}
