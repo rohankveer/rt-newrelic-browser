@@ -3,6 +3,18 @@
     <?php
     $option_name = 'rtp_relic_account_details';
     $app_option_name = 'rtp_relic_browser_details';
+    /*$get_browser_curl = curl_init();
+    curl_setopt_array( $get_browser_curl, array( CURLOPT_URL => 'https://staging-api.newrelic.com/v2/browser_applications.json?filter[ids]=73244',
+	CURLOPT_RETURNTRANSFER => 1,
+	CURLOPT_CUSTOMREQUEST => "GET",
+	CURLOPT_HTTPHEADER => array( 'x-api-key:f7ee61de49de0060c9cab987808248f48c4ad8965377273', 'Content-Type:application/json' ),
+    ) );
+    $resp = curl_exec( $get_browser_curl );
+    $decoded_data = json_decode( $resp );
+    foreach ( $decoded_data->browser_applications as $key => $value ) {
+	    print_r( $value->id );
+    }
+    curl_close( $get_browser_curl );*/
     if ( get_option( $option_name ) == false ) {
 	?>
         <h3>Do you have a New Relic account?</h3>
@@ -22,28 +34,28 @@
     	    <table class="form-table">
     		<tbody>
     		    <tr>
-    			<th scope="row"><label for="blogname">Account Name:</label></th>
+    			<th scope="row"><label for="blogname">Account Name<span class="description"> (required)</span></label></th>
     			<td>
     			    <input type="text" name="relic-account-name" id="relic-account-name" class="regular-text" value="<?php echo $_SERVER['SERVER_NAME']; ?>">
     			    <span id="relic-account-name_error" class="form_error"></span>
     			</td>
     		    </tr>
     		    <tr>
-    			<th scope="row"><label for="blogname">Email:</label></th>
+    			<th scope="row"><label for="blogname">Email<span class="description"> (required)</span></label></th>
     			<td>
     			    <input type="text" name="relic-account-email" id="relic-account-email" class="regular-text" >
     			    <span id="relic-account-email_error" class="form_error"></span>
     			</td>
     		    </tr>
     		    <tr>
-    			<th scope="row"><label for="blogname">First Name:</label></th>
+    			<th scope="row"><label for="blogname">First Name<span class="description"> (required)</span></label></th>
     			<td>
     			    <input type="text" name="relic-first-name" id="relic-first-name" class="regular-text">
     			    <span id="relic-first-name_error" class="form_error"></span>
     			</td>
     		    </tr>
     		    <tr>
-    			<th scope="row"><label for="blogname">Last Name:</label></th>
+    			<th scope="row"><label for="blogname">Last Name<span class="description"> (required)</span></label></th>
     			<td>
     			    <input type="text" name="relic-last-name" id="relic-last-name" class="regular-text">
     			    <span id="relic-last-name_error" class="form_error"></span>

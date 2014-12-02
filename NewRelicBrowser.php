@@ -14,7 +14,26 @@ function rtp_relic_register_settings() {
 }
 
 function rtp_relic_option_page() {
-    add_options_page( 'New Relic Options', 'New Relic Browser', 'manage_options', 'new-relic-browser', 'new_relic_options' );
+    $rtp_new_relic_setting_page = add_options_page( 'New Relic Options', 'New Relic Browser', 'manage_options', 'new-relic-browser', 'new_relic_options' );
+    add_action( 'load-' . $rtp_new_relic_setting_page, 'rtp_relic_page_help' );
+}
+
+function rtp_relic_page_help() {
+    $screen = get_current_screen();
+
+    $screen->add_help_tab( array(
+	'id' => 'rtp_relic_page_overview_tab',
+	'title' => __( 'Overview' ),
+	'content' => '<p>' . __( 'This page will allow you to integrate your New Relic Browser app with your website. 
+				If do not have New Relic account, then just select "No" and provide required details. The New Relic script will be loaded automatically in <head> tag of your site without any manual effort.
+				' ) . '</p>',
+				) );
+
+    $screen->add_help_tab( array(
+	'id' => 'rtp_relic_page_about_tab',
+	'title' => __( 'New Relic Browser' ),
+	'content' => '<p>' . __( 'New Relic Browser provides deep visibility and actionable insights into real users experiences on your website. With standard page load timing (sometimes referred to as real user monitoring or RUM), New Relic measures the overall time to load the entire webpage. However, New Relic Browser goes beyond RUM to also help you monitor the performance of individual sessions, AJAX requests, and JavaScript errors—extending the monitoring throughout the entire life cycle of the page.' ) . '</p>',
+    ) );
 }
 
 function new_relic_options() {
@@ -217,3 +236,5 @@ add_action( 'wp_head', 'insert_relic_script', 1 );
 add_action( 'admin_enqueue_scripts', 'rtp_relic_load_js' );
 add_action( 'admin_menu', 'rtp_relic_option_page' );
 add_action( 'admin_init', 'rtp_relic_register_settings' );
+
+
